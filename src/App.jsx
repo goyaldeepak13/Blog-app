@@ -1,54 +1,44 @@
 // import React, { useState, useEffect } from 'react'
-// import {useDispatch} from 'react-redux'
+// import { useDispatch } from 'react-redux'
 // import './App.css'
-// import authService from './appwrite/auth'
-// import { login,logout } from './store/authSlice'
+// import authService from "./appwrite/auth"
+// import {login, logout} from "./store/authSlice"
 // import { Footer, Header } from './components'
 // import { Outlet } from 'react-router-dom'
+// import {LoadingSpinner} from './components';
 
 // function App() {
- 
+//   const [loading, setLoading] = useState(false)
+//   const dispatch = useDispatch()
+
+//   useEffect(() => {
+//     authService.getCurrentUser()
+//     .then((userData) => {
+//       if (userData) {
+//         dispatch(login({userData}))
+//       } else {
+//         dispatch(logout())
+//       }
+//     })
+//     .finally(() => setLoading(true))
+//   }, [])
   
-//  const [loading, setLoading] = useState(true) // basically there will be loading in order to fetch data so if loading is true we will show loading data othewise we will show the data
-// const dispatch = useDispatch()
-
-
-// useEffect(() => {
-//   authService.getCurrentUser()
-//   .then((userData) =>{
-//     if(userData){
-//       dispatch(login({userData}))
-//     }else{
-//       dispatch(logout())
-//     }
-//   })
-//   .finally(() => setLoading(false))
-// }, [])
-   
-//  return !loading?(
- 
-//   <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-//     <div className='w-full block'>
-//       <Header/>
-//       <main>
- 
-//        Todo: <Outlet/>
-//       </main>
-//       <Footer/>
+//   return loading ? (
+//     <div className='min-h-screen flex flex-wrap content-between bg-red-600'>
+//       <div className='w-full block'>
+//         <Header />
+//         <main>
+//         <Outlet />
+//         </main>
+//         <Footer />
+//       </div>
 //     </div>
-//   </div>
-
-//  ):(null)
- 
+//   ) :  <LoadingSpinner />
 // }
 
 // export default App
 
 
-
-
-
- 
 
 
 
@@ -59,10 +49,10 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import './App.css'
 import authService from "./appwrite/auth"
-import {login, logout} from "./store/authSlice"
+import { login, logout } from "./store/authSlice"
 import { Footer, Header } from './components'
 import { Outlet } from 'react-router-dom'
-import {LoadingSpinner} from './components';
+import { LoadingSpinner } from './components'
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -70,27 +60,28 @@ function App() {
 
   useEffect(() => {
     authService.getCurrentUser()
-    .then((userData) => {
-      if (userData) {
-        dispatch(login({userData}))
-      } else {
-        dispatch(logout())
-      }
-    })
-    .finally(() => setLoading(true))
-  }, [])
-  
+      .then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }))
+        } else {
+          dispatch(logout())
+        }
+      })
+      .finally(() => setLoading(true))
+  }, [dispatch])
+
   return loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+    <div className='min-h-screen flex flex-wrap content-between bg-gradient-to-r from-blue-200 via-purple-100 to-pink-100'>
       <div className='w-full block'>
         <Header />
-        <main>
-        <Outlet />
+        <main className='p-4'>
+          <Outlet />
         </main>
         <Footer />
       </div>
     </div>
-  ) :  <LoadingSpinner />
+  ) : <LoadingSpinner />
 }
 
 export default App
+
