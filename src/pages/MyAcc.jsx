@@ -16,26 +16,4 @@ export default MyAcc
 
 
 
-
-
-
-// import React from 'react'
-// import { Modal } from '../components'
-
-
-// function MyAcc() {
-//     //   console.log("login pages")
-//     return (
-//         <div className='py-8'>
-//             <Modal />
-            
-//         </div>
-//     )
-// }
-
-// export default MyAcc
-
-
-
-
-
+ 
